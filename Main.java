@@ -1,7 +1,10 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 void main() {
     String choice = "";
+    var inventory = new ArrayList<FoodItem>();
+
 
     while (!choice.equals("6")) {
         IO.println("My Fridge Tracker");
@@ -16,7 +19,12 @@ void main() {
 
         switch (choice) {
             case "1" -> {
-                IO.println("Adding food item");
+                String name = IO.readln("Enter the name of food item:");
+                LocalDate expiryDate = LocalDate.parse(IO.readln("Enter the expiry date (YYYY-MM-DD):"));
+                int quantity = Integer.parseInt(IO.readln("Enter the quantity:"));
+                FoodItem foodItem = new FoodItem(name, expiryDate, quantity);
+                inventory.add(foodItem);
+                IO.println(name + " added to inventory.");
             }
             case "2" -> {
                 IO.println("Viewing inventory");
