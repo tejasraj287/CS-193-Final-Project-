@@ -27,9 +27,12 @@ void main() {
                 IO.println(name + " added to inventory.");
             }
             case "2" -> {
-                for (FoodItem item : inventory) {
-                    IO.println("Name: " + item.getName() + ", Expiry Date: " + item.getExpiryDate() + ", Quantity: " + item.getQuantity());
-                }
+                if (inventory.isEmpty()) {
+                    IO.println("Inventory is empty.");
+                } else {
+                    for (FoodItem item : inventory) {
+                        IO.println("Name: " + item.getName() + ", Expiry Date: " + item.getExpiryDate() + ", Quantity: " + item.getQuantity());
+                    }
             }
             case "3" -> {
                 IO.println("Editing food item");
