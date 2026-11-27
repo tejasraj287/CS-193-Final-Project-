@@ -27,7 +27,9 @@ void main() {
                 IO.println(name + " added to inventory.");
             }
             case "2" -> {
-                IO.println("Viewing inventory");
+                for (FoodItem item : inventory) {
+                    IO.println("Name: " + item.getName() + ", Expiry Date: " + item.getExpiryDate() + ", Quantity: " + item.getQuantity());
+                }
             }
             case "3" -> {
                 IO.println("Editing food item");
