@@ -63,11 +63,30 @@ void main() {
                     } catch (NumberFormatException e) {
                         IO.println("Please enter a valid number.");
                     }
-
                 }
             }
             case "4" -> {
-                IO.println("Removing food item");
+                if (inventory.isEmpty()) {
+                    IO.println("Inventory is empty.");
+                } else {
+                    for (int i = 0; i < inventory.size(); i++) {
+                        FoodItem item = inventory.get(i);
+                        IO.println((i + 1) + ". Name: " + item.getName() + ", Expiry Date: " + item.getExpiryDate() + ", Quantity: " + item.getQuantity());
+                    }
+                    try {
+                        int number = Integer.parseInt(IO.readln("Enter which food item's number you want to remove: "));
+                        int index = number - 1;
+
+                        if (index >= 0 && index < inventory.size()) {
+                            inventory.remove(index);
+                            IO.println("Food item was removed.");
+                        } else {
+                            IO.println("Invalid item number.");
+                        }
+                    } catch (NumberFormatException e) {
+                        IO.println("Please enter a valid number.");
+                    }
+                }
             }
             case "5" -> {
                 IO.println("Checking expiry");
