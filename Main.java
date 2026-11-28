@@ -19,9 +19,9 @@ void main() {
 
         switch (choice) {
             case "1" -> {
-                String name = IO.readln("Enter the name of food item:");
-                LocalDate expiryDate = LocalDate.parse(IO.readln("Enter the expiry date (YYYY-MM-DD):"));
-                int quantity = Integer.parseInt(IO.readln("Enter the quantity:"));
+                String name = IO.readln("Enter the name of food item: ");
+                LocalDate expiryDate = LocalDate.parse(IO.readln("Enter the expiry date (YYYY-MM-DD): "));
+                int quantity = Integer.parseInt(IO.readln("Enter the quantity: "));
                 FoodItem foodItem = new FoodItem(name, expiryDate, quantity);
                 inventory.add(foodItem);
                 IO.println(name + " added to inventory.");
@@ -37,7 +37,34 @@ void main() {
                 }
             }
             case "3" -> {
-                IO.println("Editing food item");
+                if (inventory.isEmpty()) {
+                    IO.println("Inventory is empty.");
+                } else {
+                    for (int i = 0; i < inventory.size(); i++) {
+                        FoodItem item = inventory.get(i);
+                        IO.println((i + 1) + ". Name: " + item.getName() + ", Expiry Date: " + item.getExpiryDate() + ", Quantity: " + item.getQuantity());
+                    }
+                    try {
+                        int number = Integer.parseInt(IO.readln("Enter which food item's number you want to edit: "));
+                        int index = number - 1;
+
+                        if (index >= 0 && index < inventory.size()) {
+                            FoodItem newItem = inventory.get(index);
+                            String newName = IO.readln("Enter new name: ");
+                            LocalDate newExpiry = LocalDate.parse(IO.readln("Enter new expiry date: "));
+                            int newQuantity = Integer.parseInt(IO.readln("Enter new quantity: "));
+                            newItem.setName(newName);
+                            newItem.setExpiryDate(newExpiry);
+                            newItem.setQuantity(newQuantity);
+                            IO.println("Food item was updated.");
+                        } else {
+                            IO.println("Invalid item number.");
+                        }
+                    } catch (NumberFormatException e) {
+                        IO.println("Please enter a valid number.");
+                    }
+
+                }
             }
             case "4" -> {
                 IO.println("Removing food item");
